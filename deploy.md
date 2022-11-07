@@ -1,0 +1,1 @@
+npm run build - to test if it is ready to deploy

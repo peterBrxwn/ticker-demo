@@ -5,7 +5,7 @@ import { ReactTicker } from '@guna81/react-ticker'
 import { getNewsData } from '../lib/fetch_data'
 const renderItem = (item) => {
   return (
-    <p style={{ whiteSpace: "nowrap", color: "#fff" }}>
+    <p style={{ whiteSpace: "nowrap" }}>
       <a href={item.url} target="_blank" rel="noopener noreferrer">
         {item.title}
       </a>

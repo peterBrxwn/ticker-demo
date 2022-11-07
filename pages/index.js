@@ -6,7 +6,7 @@ import { getNewsData } from './ssg/fetch_data'
 const renderItem = (item) => {
   return (
     <p style={{ whiteSpace: "nowrap", color: "#fff" }}>
-      <a href={item.url} target="_blank" without rel="noreferrer">
+      <a href={item.url} target="_blank" rel="noopener noreferrer">
         {item.title}
       </a>
     </p>

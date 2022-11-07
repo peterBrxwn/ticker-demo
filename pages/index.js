@@ -2,45 +2,29 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { ReactTicker } from '@guna81/react-ticker'
-const data = [
-  "Sen. Feinstein condemns 'continued disinformation and lies' about Paul Pelosi attack."
-  ,
-  "Teenage crew arrested in connection with San Francisco armed carjackings."
-  ,
-  "SF Muni bus routes disrupted during Golden Gate Half Marathon."
-  ,
-  "Old tweets paint Twitter's new owner Elon Musk as erratic, sometimes reckless."
-  ,
-  "O2 dead in horrendous multi-car crash in Redwood City."
-  ,
-  "Twitter layoffs part of a larger trend in tech industry."
-  ,
-  "Juvenile stabbed during large brawl in San Francisco Fillmore District."
-  ,
-  "Judge in Paul Pelosi attack hearing worked with speaker's daughter."
-  ,
-  "San Francisco DA announces several charges for man who beat Visitacion Valley senior to death."
-];
+import { getNewsData } from './ssg/fetch_data'
 const renderItem = (item) => {
   return (
-    <p
-      style={{
-        whiteSpace: "nowrap",
-        color: "#fff"
-      }}
-    >
-      {item}
+    <p style={{ whiteSpace: "nowrap", color: "#fff" }}>
+      <a href={item.url} target="_blank">
+        {item.title}
+      </a>
     </p>
   );
 };
 
-export default function Home() {
+export async function getStaticProps() {
+  const newsData = await getNewsData();
+  return { props: { newsData } };
+}
+
+export default function Home(newsData) {
   return (
     <div className={styles.container}>
       <ReactTicker
-        data={data}
+        data={newsData.newsData.articles}
         component={renderItem}
-        speed={40}
+        speed={45}
         keyName="_id"
         tickerStyle={{
           position: "fixed",

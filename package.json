@@ -13,6 +13,8 @@
     "eslint-config-next": "13.0.2",
     "next": "13.0.2",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-advanced-news-ticker": "^1.0.1",
+    "react-dom": "18.2.0",
+    "regenerator-runtime": "^0.13.10"
   }
 }

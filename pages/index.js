@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { ReactTicker } from '@guna81/react-ticker'
-import { getNewsData } from './ssg/fetch_data'
+import { getNewsData } from '../lib/fetch_data'
 const renderItem = (item) => {
   return (
     <p style={{ whiteSpace: "nowrap", color: "#fff" }}>

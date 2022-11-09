@@ -1,25 +1,20 @@
 import React from "react";
 import { ReactTicker } from '@guna81/react-ticker'
 import { useState, useEffect } from 'react'
-import fetch from 'node-fetch';
-const url = 'https://newsapi.org/v2/top-headlines?sources=reuters&sortBy=publishedAt&apiKey=8262ea4435994f43afec08c2de4b7490';
 
-export default function Ticker() {
-  const [data, setData] = useState(null)
+const delay = ms => new Promise(
+  resolve => setTimeout(resolve, ms)
+);
+
+export default function Ticker(props) {
   const [isLoading, setLoading] = useState(false)
 
   useEffect(() => {
     setLoading(true)
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data.articles)
-        setLoading(false)
-      })
+    delay(2000).then(setLoading(false))
   }, []);
 
   if (isLoading) return <span></span>
-  if (!data) return <span></span>
 
   const renderItem = (item) => {
     return (
@@ -30,6 +25,10 @@ export default function Ticker() {
       </p>
     );
   };
+  const data = [];
+  for (let article of props.data.newsData.articles) {
+    if (article.source.id == 'reuters') data.push(article);
+  }
 
   return (
     <ReactTicker

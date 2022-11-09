@@ -7,11 +7,14 @@ const delay = ms => new Promise(
 );
 
 export default function Ticker(props) {
-  const [isLoading, setLoading] = useState(false)
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
-    setLoading(true)
-    delay(2000).then(setLoading(false))
+    async function fetchData() {
+      await delay(1000)
+      setLoading(false)
+    }
+    fetchData();
   }, []);
 
   if (isLoading) return <span></span>
